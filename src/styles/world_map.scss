@@ -1,10 +1,11 @@
 
 body {
     background-color: #1a2323;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // min-height: 100vh;
+    // overflow: hidden;
 }
 
 .map {
@@ -13,12 +14,15 @@ body {
 }
 
 path {
-    // fill: #cccccc;
     stroke: white;
     stroke-width: .6px;
 }
 
-// div {
-//     margin: auto;
-//     top: 500px;
-// }
+h1 {
+    color: white;
+    display: block;
+}
+
+ul {
+    color: white;
+}

@@ -16,10 +16,6 @@ html, body {
 
 body {
   background-color: #1a2323;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
 }
 
 .map {
@@ -30,4 +26,13 @@ body {
 path {
   stroke: white;
   stroke-width: 0.6px;
+}
+
+h1 {
+  color: white;
+  display: block;
+}
+
+ul {
+  color: white;
 }
