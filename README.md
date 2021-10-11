@@ -30,3 +30,4 @@ In addition, Global Happiness will include:
 
 ### Wireframe:
 ![Screen Shot 2021-10-11 at 9 39 35 AM](https://user-images.githubusercontent.com/88195745/136799972-8e533c83-19e0-45aa-a85d-3e4b47033e5d.png)
+
