@@ -27,3 +27,4 @@ In addition, Sense will include:
 - TUESDAY: Use HTML and CSS to create a simple navbar and instruction modal for the page.
 - WEDNESDAY: Work on the CSS styling to create a clean, user-friendly design. Troubleshoot any last minute issues.
 - THURSDAY MORNING: Deploy World Happiness to GitHub Pages and prepare for presentation in the afternoon.
+
