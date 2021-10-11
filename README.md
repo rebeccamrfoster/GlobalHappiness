@@ -10,7 +10,7 @@ In Global Happiness, users will be able to:
 - Hover over a single part of the color legend to view only the countries within that range of the Ladder Score.
 - Select a particular continent from a list on the side to view only the countries within that region.
 
-In addition, Sense will include:
+In addition, Global Happiness will include:
 - A footer at the bottom of the page with the year, my name, and a link to my GitHub.
 - A favicon.
 - A README file that explains the functionality and purpose of the project, including a Table of Contents, screenshots, and code snippets.
