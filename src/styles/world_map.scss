@@ -8,9 +8,30 @@ body {
     // overflow: hidden;
 }
 
-.map {
-    position: relative;
+div {
+    display: inline;
+}
+
+main {
     display: flex;
+	justify-content: space-around;
+    padding: 30px;
+
+    // .map {
+    //     display: block;
+    //     float: left;
+    //     padding: 40px;
+    // }
+
+    // .tooltip {
+    //     display: block;
+    //     float: right;
+    // }
+}
+
+.map {
+    // position: relative;
+    // display: flex;
 }
 
 path {
@@ -18,11 +39,6 @@ path {
     stroke-width: .6px;
 }
 
-h1 {
-    color: white;
-    display: block;
-}
-
-ul {
-    color: white;
+.sphere {
+    fill: darkblue;
 }

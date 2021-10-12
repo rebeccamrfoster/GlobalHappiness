@@ -1,7 +1,7 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-html, body {
+html, body, header, nav, h1, ul, li, a, table, th, tr, td, footer, p {
   margin: 0;
   border: 0;
   padding: 0;
@@ -18,9 +18,14 @@ body {
   background-color: #1a2323;
 }
 
-.map {
-  position: relative;
+div {
+  display: inline;
+}
+
+main {
   display: flex;
+  justify-content: space-around;
+  padding: 30px;
 }
 
 path {
@@ -28,11 +33,77 @@ path {
   stroke-width: 0.6px;
 }
 
-h1 {
-  color: white;
-  display: block;
+.sphere {
+  fill: darkblue;
 }
 
-ul {
+.tooltip {
+  float: right;
+  text-align: left;
+  padding: 16px;
+  background-color: #2b3535;
+  border-radius: 6%;
+  border: 1px solid white;
+  width: 180px;
   color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+.tooltip #country-name {
+  font-size: 20px;
+}
+.tooltip th {
+  padding-right: 6px;
+}
+.tooltip th, .tooltip td {
+  font-size: 12px;
+  padding: 3px;
+}
+
+.header {
+  background: #231824;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.header h1, .header a {
+  display: block;
+  padding: 20px;
+}
+.header a:hover {
+  background: black;
+}
+
+.header-nav {
+  width: 100vw;
+  margin: auto;
+}
+
+.header-nav-title {
+  float: left;
+}
+
+.header-nav-list {
+  float: right;
+  margin-right: 60px;
+}
+.header-nav-list li {
+  float: left;
+  list-style: none;
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.footer {
+  color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 16px;
 }

@@ -1,0 +1,39 @@
+.header {
+    background: rgb(35, 24, 36);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+
+    h1, a {
+        display: block;
+        padding: 20px;        
+    }
+
+    a:hover {
+        background: black;
+    }
+}
+
+.header-nav {
+    width: 100vw;
+    margin: auto;
+}
+
+.header-nav-title {
+    float: left;
+}
+
+.header-nav-list {
+    float: right;
+    margin-right: 60px;
+
+     li {
+        float: left;
+        list-style: none;
+    }
+}
+
+.group:after {
+    content: "";
+    display: block;
+    clear: both;
+}

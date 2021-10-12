@@ -1,12 +1,7 @@
-// import { select, json } from 'd3';
-// import { getMetadata } from "core-js/fn/reflect";
-// import { parseFloat } from "core-js/core/number";
 import * as d3 from "d3";
-// import { feature } from "topojson";
 
 class WorldMap {
     constructor() {
-
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.data = this.getWorldHappinessData(); // rename: scoreByName
@@ -17,22 +12,14 @@ class WorldMap {
     getWorldHappinessData() {
         const parsedData = {};
         d3.csv("https://raw.githubusercontent.com/rebeccamrfoster/javascript_project_dataset/main/world-happiness-report-2021.csv")
-            .then(data => {
-                data.forEach(country => {
+            .then(response => {
+                response.forEach(country => {
                     const countryName = country["Country name"];
-                    const ladderScore = parseFloat(country["Ladder score"]);
-                    parsedData[countryName] = ladderScore;
+                    // const ladderScore = parseFloat(country["Ladder score"]);
+                    parsedData[countryName] = country;
                 });
             });
         return parsedData;
-
-        // async function getData() {
-        //     const response = await fetch("https://raw.githubusercontent.com/rebeccamrfoster/javascript_project_dataset/main/world-happiness-report-2021.csv");
-        //     const text = await response.text();
-        //     const data = d3.csvParse(text);
-        //     console.log(data);
-        //     return data;
-        // }
     }
 
     createMap() {
@@ -43,20 +30,53 @@ class WorldMap {
             .append("svg")
             .attr("height", height)
             .attr("width", width);
+        
+        const g = svg.append("g");
+
+        // var rectBBox = document.querySelector('svg');
+        // var groupElement = document.querySelector('g');
+
+        // var bboxGroup = groupElement.getBBox();
+        // rectBBox.setAttribute('x', bboxGroup.x);
+        // rectBBox.setAttribute('y', bboxGroup.y);
+        // rectBBox.setAttribute('width', bboxGroup.width);
+        // rectBBox.setAttribute('height', bboxGroup.height);
 
         // convert latitude/longitude coordinates to flat Cartesian plane
-        const projection = d3.geoMercator()
+        const projection = d3.geoNaturalEarth1()
             .scale(140)
             .translate([width / 2, height / 1.4]); // translate to center of SVG
-
-        // let projection = function(longLat) {
-        //     return d3.geoMercator(longLat);
-        // }
         const pathGenerator = d3.geoPath().projection(projection);
 
-        let colorScale = d3.scaleSequential()
+        const colorScale = d3.scaleSequential()
             .domain([0, 10])
             .interpolator(d3.interpolatePlasma);
+
+        g.append("path")
+            .attr("class", "sphere")
+            .attr("d", pathGenerator({ type: "Sphere" }));
+        
+        // svg.append("g")
+        //     .attr("class", "colorLegend")
+        //     .attr("transform", "translate(500, 200)")
+        //     .append(() => legend({
+        //         color: colorScale,
+        //         title: "População (em Milhões de habitantes)",
+        //         width: 250,
+        //         tickFormat: ".1f"
+        //     }));
+            
+        // var labels = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+        // var colorLegend = d3.legendColor()
+        //     .shapeWidth(30)
+        //     .cells(10)
+        //     .orient("horizonatal")
+        //     .scale(colorScale)
+        //     .labels(d => labels[d.i])
+        //     .title("Ladder Score");
+        // svg.select(".colorLegend")
+        //     .call(colorLegend);
+        
 
         // const colorLegend = svg.append('g')
         //     .attr("transform", "translate(180, 150)")
@@ -67,36 +87,51 @@ class WorldMap {
         //         textOffset: 40
         //     });
 
+
+
         // returns promise
         d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
-            .then(data => {
+            .then(response => {
                 // convert TopoJSON to GeoJSON in memory, e.g., topojson.feature(topology, object)
-                const countries = topojson.feature(data, data.objects.countries);
+                const countries = topojson.feature(response, response.objects.countries);
 
-                // data join -- make one SVG path element for each country/piece of data                
-                svg.selectAll("path")
+                // data join: make one SVG path element for each country/piece of data                
+                g.selectAll("path")
                     .data(countries.features)
                     .join("path")
-                    .attr("fill", "#cccccc")
                     .attr("d", d => pathGenerator(d)) // function takes one feature as argument, uses pathGenerator
                     .attr("id", d => {
                         return `${d.id}`;
                     })
+                    .attr("opacity", "90%")
+                    .attr("cursor", "pointer")
                     .attr("fill", d => {
                         const countryName = this.countryNames[parseInt(d.id)];
                         if (this.data[countryName]) {
-                            return colorScale(this.data[countryName]);
+                            const ladderScore = parseFloat(this.data[countryName]["Ladder score"]);
+                            return colorScale(ladderScore);
                         }
                         else {
                             return "#cccccc";
                         }
+                    })
+                    .append("title")
+                    .text(d => {
+                        const countryName = this.countryNames[parseInt(d.id)];
+                        return countryName;
                     });
 
-                    document.querySelectorAll("path").forEach(el => {
+                document.querySelectorAll("path").forEach(el => {
                     el.addEventListener("mouseover", this.handleMouseOver);
                     el.addEventListener("mouseout", this.handleMouseOut);
                 });
             });
+
+        
+        svg.call(d3.zoom()
+            .on("zoom", (event, d) => {
+                g.attr("transform", event.transform);
+            }));
     }
 
     getCountryNamesData() {
@@ -120,29 +155,48 @@ class WorldMap {
     handleMouseOver(event) {
         const target = event.target;
 
-        // target.setAttribute("style", "fill: #a70c70;");
-        // target.setAttribute("style", "opacity: 40%;");
-        const countryName = this.countryNames[parseInt(target.id)];
-        const h1 = document.querySelector("h1");
-        h1.innerText = countryName;
-        const ul = document.querySelector("ul");
-        const li = document.querySelector("li");
-        const ladderScore = this.data[countryName];
-        li.textContent = `Ladder score: ${ladderScore}`;
-       
-        // target.setAttribute("style", "opacity: 50%;")
-
-        // const colorScale = scaleOrdinal(schemeCategory10);
-        // const colorValue = this.data[name];
-        // colorScale.domain([0, 10]);
+        target.setAttribute("style", "opacity: 100%;");
+        target.setAttribute("style", "stroke-width: 1.4px");
+        this.createTooltip(target);
     }
 
     handleMouseOut(event) {
         const target = event.target;
         target.setAttribute("style", "fill: #cccccc;")
-        target.setAttribute("style", "opacity: 100%;")
+        target.setAttribute("style", "opacity: 90%;")
     }
 
+    createTooltip(target) {
+        const countryName = this.countryNames[parseInt(target.id)];
+        const dataHash = this.data[countryName];
+
+        const table = document.querySelector(".tooltip");
+        // table.setAttribute("class", "selected");
+
+        const countryNameRow = document.getElementById("country-name");
+        countryNameRow.textContent = countryName;
+
+        const ladderScoreRow = document.getElementById("ladder-score")
+        ladderScoreRow.textContent = `${dataHash["Ladder score"]}`;
+
+        const gdpRow = document.getElementById("gdp")
+        gdpRow.textContent = `${dataHash["Logged GDP per capita"]}`;
+
+        const socialSupportRow = document.getElementById("social-support")
+        socialSupportRow.textContent = `${dataHash["Social support"]}`;
+
+        const lifeExpectancyRow = document.getElementById("life-expectancy")
+        lifeExpectancyRow.textContent = `${dataHash["Healthy life expectancy"]}`;
+
+        const freedomRow = document.getElementById("freedom")
+        freedomRow.textContent = `${dataHash["Freedom to make life choices"]}`;
+
+        const generosityRow = document.getElementById("generosity")
+        generosityRow.textContent = `${dataHash["Generosity"]}`;
+
+        const corruptionRow = document.getElementById("corruption")
+        corruptionRow.textContent = `${dataHash["Perceptions of corruption"]}`;
+    }
 }
 
 export default WorldMap;

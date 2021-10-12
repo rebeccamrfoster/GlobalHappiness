@@ -9,17 +9,66 @@
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3-legend/1.1.0/d3-legend.js"></script>
 
     <title>World Map</title>
 </head>
 <body>
-    <div class="map"></div>
+
+    <header class="header">
+        <nav class="header-nav group">
+            <h1 class="header-nav-title">Global Happiness</h1>
+
+            <ul class="header-nav-list group">
+                <li><a href="#">About</a></li>
+                <li><a href="https://github.com/rebeccamrfoster/javascript_project">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="group">
+
+        <div class="map"></div>
     
-    <h1>Country</h1>
-    <ul class="table">Details:
-        <li>
-            
-        </li>
-    </ul>
+        <table class="tooltip">
+            <tr>
+                <th colspan="2" id="country-name"></th>
+            </tr>
+            <tr>
+                <th>Ladder score:</th>
+                <td id="ladder-score"></td>
+            </tr>
+            <tr>
+                <th>GDP per capita:</th>
+                <td id="gdp"></td>
+            </tr>
+            <tr>
+                <th>Social support:</th>
+                <td id="social-support"></td>
+            </tr>
+            <tr>
+                <th>Healthy life expectancy:</th>
+                <td id="life-expectancy"></td>
+            </tr>
+            <tr>
+                <th>Freedom to make life choices:</th>
+                <td id="freedom"></td>
+            </tr>
+            <tr>
+                <th>Generosity:</th>
+                <td id="generosity"></td>
+            </tr>
+            <tr>
+                <th>Perceptions of corruption:</th>
+                <td id="corruption"></td>
+            </tr>
+        </table>
+
+    </main>
+
+    <footer class="footer">
+        <p>2021 Created by Rebecca Foster</p>
+    </footer>
+
 </body>
 </html>
