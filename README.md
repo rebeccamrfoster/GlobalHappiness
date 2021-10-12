@@ -10,7 +10,7 @@ In Global Happiness, users will be able to:
 - Hover over a single part of the color legend to view only the countries within that range of the Ladder Score.
 - Select a particular continent from a list on the side to view only the countries within that region.
 
-In addition, Sense will include:
+In addition, Global Happiness will include:
 - A footer at the bottom of the page with the year, my name, and a link to my GitHub.
 - A favicon.
 - A README file that explains the functionality and purpose of the project, including a Table of Contents, screenshots, and code snippets.
@@ -27,4 +27,7 @@ In addition, Sense will include:
 - TUESDAY: Use HTML and CSS to create a simple navbar and instruction modal for the page.
 - WEDNESDAY: Work on the CSS styling to create a clean, user-friendly design. Troubleshoot any last minute issues.
 - THURSDAY MORNING: Deploy World Happiness to GitHub Pages and prepare for presentation in the afternoon.
+
+### Wireframe:
+![Screen Shot 2021-10-11 at 9 39 35 AM](https://user-images.githubusercontent.com/88195745/136799972-8e533c83-19e0-45aa-a85d-3e4b47033e5d.png)
 
