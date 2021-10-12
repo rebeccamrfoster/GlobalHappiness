@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import { colorScale, continuous } from "./color_legend";
 
 class WorldMap {
     constructor() {
@@ -30,34 +31,98 @@ class WorldMap {
             .append("svg")
             .attr("height", height)
             .attr("width", width);
-        
         const g = svg.append("g");
-
-        // var rectBBox = document.querySelector('svg');
-        // var groupElement = document.querySelector('g');
-
-        // var bboxGroup = groupElement.getBBox();
-        // rectBBox.setAttribute('x', bboxGroup.x);
-        // rectBBox.setAttribute('y', bboxGroup.y);
-        // rectBBox.setAttribute('width', bboxGroup.width);
-        // rectBBox.setAttribute('height', bboxGroup.height);
-
+        
         // convert latitude/longitude coordinates to flat Cartesian plane
         const projection = d3.geoNaturalEarth1()
-            .scale(140)
-            .translate([width / 2, height / 1.4]); // translate to center of SVG
+        .scale(140)
+        .translate([width / 2, height / 1.4]); // translate to center of SVG
         const pathGenerator = d3.geoPath().projection(projection);
-
-        const colorScale = d3.scaleSequential()
-            .domain([0, 10])
-            .interpolator(d3.interpolatePlasma);
-
-        g.append("path")
-            .attr("class", "sphere")
-            .attr("d", pathGenerator({ type: "Sphere" }));
         
-        // svg.append("g")
-        //     .attr("class", "colorLegend")
+        continuous("#legend1", colorScale);
+        
+        // const colorScale = d3.scaleSequential()
+        //     .domain([0, 10])
+        //     .interpolator(d3.interpolatePlasma);
+        
+        // continuous("#legend1", colorScale);
+
+        // function continuous(selector_id, colorscale) {
+        //     var legendheight = 200,
+        //         legendwidth = 80,
+        //         margin = { top: 10, right: 60, bottom: 10, left: 2 };
+
+        //     var canvas = d3.select(selector_id)
+        //         .style("height", legendheight + "px")
+        //         .style("width", legendwidth + "px")
+        //         .style("position", "relative")
+        //         .append("canvas")
+        //         .attr("height", legendheight - margin.top - margin.bottom)
+        //         .attr("width", 1)
+        //         .style("height", (legendheight - margin.top - margin.bottom) + "px")
+        //         .style("width", (legendwidth - margin.left - margin.right) + "px")
+        //         .style("border", "1px solid #000")
+        //         .style("position", "absolute")
+        //         .style("top", (margin.top) + "px")
+        //         .style("left", (margin.left) + "px")
+        //         .node();
+
+        //     var ctx = canvas.getContext("2d");
+
+        //     var legendscale = d3.scaleLinear()
+        //         .range([1, legendheight - margin.top - margin.bottom])
+        //         .domain(colorscale.domain());
+
+        //     // image data hackery based on http://bl.ocks.org/mbostock/048d21cf747371b11884f75ad896e5a5
+        //     var image = ctx.createImageData(1, legendheight);
+        //     d3.range(legendheight).forEach(function (i) {
+        //         var c = d3.rgb(colorscale(legendscale.invert(i)));
+        //         image.data[4 * i] = c.r;
+        //         image.data[4 * i + 1] = c.g;
+        //         image.data[4 * i + 2] = c.b;
+        //         image.data[4 * i + 3] = 255;
+        //     });
+        //     ctx.putImageData(image, 0, 0);
+
+        //     // A simpler way to do the above, but possibly slower. keep in mind the legend width is stretched because the width attr of the canvas is 1
+        //     // See http://stackoverflow.com/questions/4899799/whats-the-best-way-to-set-a-single-pixel-in-an-html5-canvas
+        //     /*
+        //     d3.range(legendheight).forEach(function(i) {
+        //       ctx.fillStyle = colorscale(legendscale.invert(i));
+        //       ctx.fillRect(0,i,1,1);
+        //     });
+        //     */
+
+        //     var legendaxis = d3.axisRight()
+        //         .scale(legendscale)
+        //         .tickSize(6)
+        //         .ticks(8);
+
+        //     var svg = d3.select(selector_id)
+        //         .append("svg")
+        //         .attr("height", (legendheight) + "px")
+        //         .attr("width", (legendwidth) + "px")
+        //         .style("position", "absolute")
+        //         .style("left", "0px")
+        //         .style("top", "0px")
+
+        //     svg
+        //         .append("g")
+        //         .attr("class", "axis")
+        //         .attr("transform", "translate(" + (legendwidth - margin.left - margin.right + 3) + "," + (margin.top) + ")")
+        //         .call(legendaxis);
+        // };
+
+
+
+
+
+
+
+            
+            
+            // svg.append("g")
+            //     .attr("class", "colorLegend")
         //     .attr("transform", "translate(500, 200)")
         //     .append(() => legend({
         //         color: colorScale,
@@ -78,16 +143,10 @@ class WorldMap {
         //     .call(colorLegend);
         
 
-        // const colorLegend = svg.append('g')
-        //     .attr("transform", "translate(180, 150)")
-        //     .call(colorLegend, {
-        //         colorScale,
-        //         circleRadius: 30,
-        //         spacing: 80,
-        //         textOffset: 40
-        //     });
 
-
+        g.append("path")
+            .attr("class", "sphere")
+            .attr("d", pathGenerator({ type: "Sphere" }));
 
         // returns promise
         d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
@@ -98,13 +157,15 @@ class WorldMap {
                 // data join: make one SVG path element for each country/piece of data                
                 g.selectAll("path")
                     .data(countries.features)
-                    .join("path")
+                    .enter()
+                    .append("path")
                     .attr("d", d => pathGenerator(d)) // function takes one feature as argument, uses pathGenerator
                     .attr("id", d => {
                         return `${d.id}`;
                     })
                     .attr("opacity", "90%")
                     .attr("cursor", "pointer")
+                    .attr("class", "country")
                     .attr("fill", d => {
                         const countryName = this.countryNames[parseInt(d.id)];
                         if (this.data[countryName]) {
@@ -121,12 +182,14 @@ class WorldMap {
                         return countryName;
                     });
 
-                document.querySelectorAll("path").forEach(el => {
+                document.querySelectorAll(".country").forEach(el => {
                     el.addEventListener("mouseover", this.handleMouseOver);
                     el.addEventListener("mouseout", this.handleMouseOut);
                 });
-            });
 
+                
+                
+            });            
         
         svg.call(d3.zoom()
             .on("zoom", (event, d) => {
@@ -158,12 +221,17 @@ class WorldMap {
         target.setAttribute("style", "opacity: 100%;");
         target.setAttribute("style", "stroke-width: 1.4px");
         this.createTooltip(target);
+        // const tooltip = document.querySelector(".tooltip");
+        // tooltip.setAttribute("style", "display: block;");
     }
 
     handleMouseOut(event) {
         const target = event.target;
         target.setAttribute("style", "fill: #cccccc;")
         target.setAttribute("style", "opacity: 90%;")
+
+        // const tooltip = document.querySelector(".tooltip");
+        // tooltip.setAttribute("style", "display: none;");
     }
 
     createTooltip(target) {
