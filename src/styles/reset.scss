@@ -1,4 +1,9 @@
-html, body, header, nav, h1, ul, li, a, table, th, tr, td, footer, p {
+$dark-grey: #1a2323;
+$light-grey: #2b3535;
+
+html, body, header, nav,
+ul, li, main, div, a,
+section, p, footer {
     margin: 0;
     border: 0;
     padding: 0;
@@ -8,7 +13,9 @@ html, body, header, nav, h1, ul, li, a, table, th, tr, td, footer, p {
     font: inherit;
     text-align: inherit;
     text-decoration: inherit;
-    color: inherit;
+    list-style: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
 
     background: transparent;
 }
