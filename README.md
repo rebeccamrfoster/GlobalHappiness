@@ -1,17 +1,18 @@
 ### Background:
 Global Happiness is a data visualization that uses the results of the World Happiness Report 2021. Specifically, it looks at the Ladder Score, which is a numerical value between 1 and 10 representing the level to which people report to feeling happy with their lives.
 
-Global Happiness uses a color scale to represent the varying degrees of happiness across the world, with darker colors indicating lower levels of happiness and lighter colors indicating higher levels of happiness. The user can hover over a single color on the color legend to highlight only the countries whose Ladder Score is within that range.
+Global Happiness uses a color scale to represent the varying degrees of happiness across the world, with darker colors indicating lower levels of happiness and lighter colors indicating higher levels of happiness.
 
 ### Functionality & MVPs:
 In Global Happiness, users will be able to:
-- Hover over a country to reveal the specific Ladder Score pertaining to the country.
-- Click on the description to read more about what the data signifies and how to interact with the visualization.
-- Hover over a single part of the color legend to view only the countries within that range of the Ladder Score.
-- Select a particular continent from a list on the side to view only the countries within that region.
+- Hover over a country to reveal the specific Ladder Score pertaining to the country as well as other factors that contribute to its score.
+- Zoom in an out to view the map more clearly.
+- Use the color legend to understand what the color of a country signifies.
+- Click on the link to the World Happiness Report to learn more about the study.
 
 In addition, Global Happiness will include:
-- A footer at the bottom of the page with the year, my name, and a link to my GitHub.
+- A description about what the data signifies and how to interact with the visualization.
+- A footer at the bottom of the page with the year and my name.
 - A favicon.
 - A README file that explains the functionality and purpose of the project, including a Table of Contents, screenshots, and code snippets.
 
