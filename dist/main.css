@@ -1,3 +1,177 @@
-html,body,header,nav,ul,li,main,div,a,section,p,footer{margin:0;border:0;padding:0;outline:0;box-sizing:inherit;font:inherit;text-align:inherit;text-decoration:inherit;list-style:none;color:#fff;font-family:"Roboto",sans-serif;background:transparent}body{background-color:#2b3535;width:100vw}.container{display:flex;justify-content:center}main{width:100%;max-width:1100px;display:flex;justify-content:flex-end;padding:40px}main .description{display:block;font-size:18px;padding:20px;padding-right:0;padding-left:40px;line-height:140%;margin-top:60px}main .description .happiness-link{text-decoration:underline}.map-and-legend{display:flex;flex-direction:column;align-items:center}.map-and-legend .sphere{fill:transparent;stroke:#fff;stroke-width:.8px}.map-and-legend .country{stroke:#fff;stroke-width:.6px}.tooltip{visibility:hidden;position:absolute;text-align:left;padding:10px;background-color:#2b3535;opacity:90%;border-radius:8px;border:1px solid #fff;width:180px;font-weight:lighter;margin-top:4%}.tooltip #country-name{font-size:20px;font-weight:bold}.tooltip th{padding-right:6px}.tooltip th,.tooltip td{font-size:12px;padding:3px}.tooltip:before{content:"";position:absolute;height:20px;width:20px;top:-11px;left:20px;border-left:1px solid #fff;border-top:1px solid #fff;transform:rotate(45deg);background-color:#2b3535;opacity:90%}.header{background:#1a2323}.header .header-nav{width:100%;margin:auto}.header .group:after{content:"";display:block;clear:both}.header-nav-list{margin-right:60px;margin-left:60px}.header-nav-list .github-link,.header-nav-list .title{display:block;padding:20px}.header-nav-list .title{position:relative;float:left;font-size:24px}.header-nav-list .github-link{float:right;padding:24px;font-size:17px}.header-nav-list .github-link:hover{background:#1a2323}.header-nav-list .github-link:hover a{color:#bdbdbd}.footer{position:fixed;left:0;bottom:0;width:100%;text-align:center;font-family:Arial,Helvetica,sans-serif;padding:40px}.legend{display:flex;flex-direction:column;width:220px;left:0;padding-top:20px}.legend .label,.legend .legend-numbers{line-height:160%}.legend .legend-numbers{display:flex;flex-direction:row;justify-content:space-between}.legend .gradient,.legend .label{margin-left:8px}.gradient{background-image:linear-gradient(to right, #0d0887, #410494, #6a00a8, #8f0da4, #b12a90, #cc4778, #e16462, #f2844b, #fca636, #fcce25, #f0f921);height:26px;width:200px;border:1px solid #fff}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+html, body, header, nav,
+ul, li, main, div, a,
+section, p, footer {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  list-style: none;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  background: transparent;
+}
 
-/*# sourceMappingURL=main.css.map*/
+body {
+  background-color: #2b3535;
+  width: 100vw;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 40px;
+}
+main .description {
+  display: block;
+  font-size: 18px;
+  padding: 20px;
+  padding-right: 0;
+  padding-left: 40px;
+  line-height: 140%;
+  margin-top: 60px;
+}
+main .description .happiness-link {
+  text-decoration: underline;
+}
+
+.map-and-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.map-and-legend .sphere {
+  fill: transparent;
+  stroke: white;
+  stroke-width: 0.8px;
+}
+.map-and-legend .country {
+  stroke: white;
+  stroke-width: 0.6px;
+}
+
+.tooltip {
+  visibility: hidden;
+  position: absolute;
+  text-align: left;
+  padding: 10px;
+  background-color: #2b3535;
+  opacity: 90%;
+  border-radius: 8px;
+  border: 1px solid white;
+  width: 180px;
+  font-weight: lighter;
+  margin-top: 4%;
+}
+.tooltip #country-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+.tooltip th {
+  padding-right: 6px;
+}
+.tooltip th, .tooltip td {
+  font-size: 12px;
+  padding: 3px;
+}
+
+.tooltip:before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: -11px;
+  left: 20px;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+  transform: rotate(45deg);
+  background-color: #2b3535;
+  opacity: 90%;
+}
+
+.header {
+  background: #1a2323;
+}
+.header .header-nav {
+  width: 100%;
+  margin: auto;
+}
+.header .group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.header-nav-list {
+  margin-right: 60px;
+  margin-left: 60px;
+}
+.header-nav-list .github-link, .header-nav-list .title {
+  display: block;
+  padding: 20px;
+}
+.header-nav-list .title {
+  position: relative;
+  float: left;
+  font-size: 24px;
+}
+.header-nav-list .github-link {
+  float: right;
+  padding: 24px;
+  font-size: 17px;
+}
+.header-nav-list .github-link:hover {
+  background: #2b3535;
+}
+.header-nav-list .github-link:hover a {
+  color: #bdbdbd;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 40px;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  left: 0;
+  padding-top: 20px;
+}
+.legend .label, .legend .legend-numbers {
+  line-height: 160%;
+}
+.legend .legend-numbers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.legend .gradient, .legend .label {
+  margin-left: 8px;
+}
+
+.gradient {
+  background-image: linear-gradient(to right, #0d0887, #410494, #6a00a8, #8f0da4, #b12a90, #cc4778, #e16462, #f2844b, #fca636, #fcce25, #f0f921);
+  height: 26px;
+  width: 200px;
+  border: 1px solid white;
+}
