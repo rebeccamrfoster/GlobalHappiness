@@ -1,0 +1,39 @@
+.legend {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    left: 0;
+    padding-top: 20px;
+
+    .label, .legend-numbers {
+        line-height: 160%;
+    }
+
+    .legend-numbers {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .gradient, .label {
+        margin-left: 8px;
+    }
+}
+
+.gradient {
+    background-image: linear-gradient(to right, 
+        #0d0887, 
+        #410494, 
+        #6a00a8, 
+        #8f0da4, 
+        #b12a90, 
+        #cc4778, 
+        #e16462, 
+        #f2844b, 
+        #fca636, 
+        #fcce25,  
+        #f0f921);
+    height: 26px;
+    width: 200px;
+    border: 1px solid white;
+}
