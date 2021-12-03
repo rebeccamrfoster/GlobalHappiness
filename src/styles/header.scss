@@ -17,28 +17,30 @@
     margin-right: 60px;
     margin-left: 60px;
 
-    .github-link, .title {
+    .header-nav-list-item, .header-nav-list-title {
         display: block;
         padding: 20px;
     }
     
-    .title {
+    .header-nav-list-title {
         position: relative;
         float: left;
         font-size: 24px;
+        // font-weight: 400;
     }
 
-    .github-link {
+    .header-nav-list-item {
         float: right;
         padding: 24px;
         font-size: 17px;
-    }
-
-    .github-link:hover {
-        background: #2b3535;
+        // font-weight: 300;
 
         a {
-            color: rgb(189, 189, 189);
+            padding: 24px;
         }
+    }
+
+    .header-nav-list-item a:hover {
+        color: rgb(189, 189, 189);
     }
 }
