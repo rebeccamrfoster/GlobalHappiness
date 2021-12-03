@@ -29,23 +29,9 @@ body {
 }
 
 main {
-  width: 100%;
-  max-width: 1100px;
   display: flex;
-  justify-content: flex-end;
-  padding: 40px;
-}
-main .description {
-  display: block;
-  font-size: 18px;
-  padding: 20px;
-  padding-right: 0;
-  padding-left: 40px;
-  line-height: 140%;
-  margin-top: 60px;
-}
-main .description .happiness-link {
-  text-decoration: underline;
+  justify-content: center;
+  align-items: center;
 }
 
 .map-and-legend {
@@ -119,35 +105,34 @@ main .description .happiness-link {
   margin-right: 60px;
   margin-left: 60px;
 }
-.header-nav-list .github-link, .header-nav-list .title {
+.header-nav-list .header-nav-list-item, .header-nav-list .header-nav-list-title {
   display: block;
   padding: 20px;
 }
-.header-nav-list .title {
+.header-nav-list .header-nav-list-title {
   position: relative;
   float: left;
   font-size: 24px;
 }
-.header-nav-list .github-link {
+.header-nav-list .header-nav-list-item {
   float: right;
   padding: 24px;
   font-size: 17px;
 }
-.header-nav-list .github-link:hover {
-  background: #2b3535;
+.header-nav-list .header-nav-list-item a {
+  padding: 24px;
 }
-.header-nav-list .github-link:hover a {
+.header-nav-list .header-nav-list-item a:hover {
   color: #bdbdbd;
 }
 
 .footer {
   position: fixed;
-  left: 0;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 40px;
+  padding-bottom: 40px;
 }
 
 .legend {
@@ -174,4 +159,56 @@ main .description .happiness-link {
   height: 26px;
   width: 200px;
   border: 1px solid white;
+}
+
+body {
+  position: relative;
+}
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.modal-container.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-container .modal {
+  background-color: #3a4141;
+  padding: 30px 30px 40px;
+  border-radius: 5px;
+  width: 600px;
+  max-width: 100%;
+}
+.modal-container .modal p {
+  font-size: 18px;
+  font-weight: 300;
+}
+.modal-container .modal p .happiness-link {
+  text-decoration: underline;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.modal-header h1 {
+  font-size: 30px;
+  font-weight: 500;
+}
+.modal-header .close {
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
 }
