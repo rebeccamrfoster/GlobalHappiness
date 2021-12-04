@@ -12,7 +12,7 @@ class WorldMap {
     }
 
     createMap() {
-        const width = 800;
+        const width = 900;
         const height = 500;
 
         const svg = d3.select(".map")
@@ -38,19 +38,15 @@ class WorldMap {
 
                 // Define one SVG path element for each country:                
                 g.selectAll("path")
-                    .data(countries.features, function(d, i) { return d + i; })
+                    .data(countries.features, (d, i) =>  d + i )
                     .enter()
                     .append("path")
-                    .attr("centroid", d => {
-                        return d3.geoCentroid(d);
-                    })
+                    .attr("centroid", d => d3.geoCentroid(d))
                     .attr("d", d => pathGenerator(d)) // Function takes one feature as argument
                     .attr("opacity", "90%")
                     .attr("cursor", "pointer")
                     .attr("class", "country")
-                    .attr("id", d => {
-                        return `${d.id}`;
-                    })
+                    .attr("id", d => `${d.id}`)
                     .attr("fill", d => {
                         const countryName = this.nameById[parseInt(d.id)];
                         if (this.dataByName[countryName]) {
