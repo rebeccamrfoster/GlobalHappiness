@@ -1,9 +1,8 @@
-export const modal = () => {
+export const createModal = () => {
     const open = document.querySelector(".open");
     const close = document.querySelector(".close");
 
     const modalContainer = document.querySelector(".modal-container");
-    // const modal = document.querySelector(".modal");
     
     open.addEventListener("click", () => {
         modalContainer.classList.add("show");
