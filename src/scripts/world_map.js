@@ -1,12 +1,13 @@
 import * as d3 from "d3";
 import { colorScale } from "./color_scale";
 import Tooltip from "./tooltip";
-import { dataByName, nameById } from "./get_data";
 
 class WorldMap {
-    constructor() {
+    constructor(dataByName, nameById) {
         this.handleMouseenterOver = this.handleMouseenterOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.dataByName = dataByName;
+        this.nameById = nameById;
         this.createMap();
     }
 
@@ -51,9 +52,9 @@ class WorldMap {
                         return `${d.id}`;
                     })
                     .attr("fill", d => {
-                        const countryName = nameById[parseInt(d.id)];
-                        if (dataByName[countryName]) {
-                            const ladderScore = parseFloat(dataByName[countryName]["Ladder score"]);
+                        const countryName = this.nameById[parseInt(d.id)];
+                        if (this.dataByName[countryName]) {
+                            const ladderScore = parseFloat(this.dataByName[countryName]["Ladder score"]);
                             return colorScale(ladderScore);
                         }
                         else { // Country was not included in the study
@@ -62,7 +63,7 @@ class WorldMap {
                     })
                     .append("title")
                     .text(d => {
-                        const countryName = nameById[parseInt(d.id)];
+                        const countryName = this.nameById[parseInt(d.id)];
                         return countryName;
                     });
 
@@ -86,8 +87,8 @@ class WorldMap {
         target.setAttribute("style", "stroke-width: 1.4px");
 
         // Instantiate Tooltip:
-        const countryName = nameById[parseInt(target.id)];
-        const dataHash = dataByName[countryName];
+        const countryName = this.nameById[parseInt(target.id)];
+        const dataHash = this.dataByName[countryName];
         new Tooltip(countryName, dataHash);
 
         const tooltip = document.querySelector(".tooltip");
