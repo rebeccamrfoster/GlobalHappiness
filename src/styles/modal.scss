@@ -3,11 +3,6 @@ body {
 }
 
 .modal-container {
-    // display: none;
-    // position: absolute;
-    // width: 100vw;
-    // left: calc(-50vw + 50%);
-    // top: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -61,4 +56,3 @@ body {
         cursor: pointer;
     }
 }
-
