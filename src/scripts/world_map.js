@@ -69,37 +69,20 @@ class WorldMap {
                             return "#cccccc";
                         }
                     })
-                    // .append(d => {
-                        // const countryName = this.nameById[parseInt(d.id)];
-                        // const tooltip = document.createElement("div");
-                        // tooltip.classList.add("tooltip");
-                        // debugger
-                        // if (this.dataByName[countryName]) {
-                        //     const dataHash = this.dataByName[countryName];
-                        //     const table = Tooltip(countryName, dataHash);
-                        //     tooltip.insertAdjacentHTML("afterbegin", table);
-                        // }
-                        // return tooltip;
-                    // })
                 
                 document.querySelectorAll("path.country").forEach(path => {
-                    const box = path.getClientRects()[0];
-
                     const countryName = this.nameById[parseInt(path.id)];
+                    const dataHash = this.dataByName[countryName];
+                    const body = document.querySelector("body");
+
+                    // Create tooltip:
                     const tooltip = document.createElement("div");
                     tooltip.classList.add(`${countryName.split(" ").join("-")}`, "tooltip");
-
-                    const dataHash = this.dataByName[countryName];
                     const table = Tooltip(countryName, dataHash);
-
                     tooltip.insertAdjacentHTML("afterbegin", table);
-                    // tooltip.style.left = `${box.x - box.width / 2}px`;
-                    // tooltip.style.top = `${box.y + box.height / 2}px`;
-                    const body = document.querySelector("body");
+                    
                     body.append(tooltip);
                 })
-                    // .append("title")
-                    // .text(d => this.nameById[parseInt(d.id)]);
 
                 document.querySelectorAll(".country").forEach(country => {
                     country.addEventListener("mouseenter", this.handleMouseenter);
@@ -115,33 +98,31 @@ class WorldMap {
 
     handleMouseenter(event) {
         const currentTarget = event.currentTarget;
+
+        // Country style:
         currentTarget.setAttribute("style", "opacity: 100%;");
         currentTarget.setAttribute("style", "stroke-width: 1.4px");
 
-        // Instantiate Tooltip:
+        // Tooltip style:
         const countryName = this.nameById[parseInt(currentTarget.id)];
-        // const dataHash = this.dataByName[countryName];
-        // new Tooltip(countryName, dataHash);
-        // debugger
         const tooltip = document.querySelector(`.${countryName.split(" ").join("-")}.tooltip`);
-        // debugger
         const xCoord = event.pageX;
         const yCoord = event.pageY;
-        debugger
         tooltip.style.left = `${xCoord}px`;
         tooltip.style.top = `${yCoord}px`;
         tooltip.classList.add("show");
-        // tooltip.style.visibility = "visible";
     }
 
     handleMouseout(event) {
         const currentTarget = event.currentTarget;
-        // currentTarget.setAttribute("style", "fill: #cccccc;");
+
+        // Country style:
         currentTarget.setAttribute("style", "opacity: 90%;");
+
+        // Tooltip style:
         const countryName = this.nameById[parseInt(currentTarget.id)];
         const tooltip = document.querySelector(`.${countryName.split(" ").join("-")}.tooltip`);
         tooltip.classList.remove("show");
-        // tooltip.style.visibility = "hidden";
     }
 }
 
