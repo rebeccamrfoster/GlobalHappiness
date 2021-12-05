@@ -1,6 +1,7 @@
 import * as d3 from "d3";
 import WorldMap from "./scripts/world_map.js";
 import { createModal } from "./scripts/modal";
+import { createFooter } from "./scripts/footer.js";
 import { parseDataByName, parseNameById } from "./scripts/parse_data";
 
 document.addEventListener("DOMContentLoaded", () => {    
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nameById = parseNameById(data);
 
         createModal();
+        createFooter();
         new WorldMap(dataByName, nameById);
     }
 
