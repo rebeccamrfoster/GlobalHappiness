@@ -6,11 +6,11 @@
         margin: auto;
     }
 
-    .group:after {
-        content: "";
-        display: block;
-        clear: both;
-    }   
+    // .group:after {
+    //     content: "";
+    //     display: block;
+    //     clear: both;
+    // }   
 }
 
 .header-nav-list {
@@ -26,14 +26,12 @@
         position: relative;
         float: left;
         font-size: 24px;
-        // font-weight: 400;
     }
 
     .header-nav-list-item {
         float: right;
         padding: 24px;
         font-size: 17px;
-        // font-weight: 300;
 
         a {
             padding: 24px;
