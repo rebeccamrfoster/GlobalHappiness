@@ -4,8 +4,8 @@ import Tooltip from "./tooltip";
 
 class WorldMap {
     constructor(dataByName, nameById) {
-        this.handleMouseenterOver = this.handleMouseenterOver.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleMouseenter = this.handleMouseenter.bind(this);
+        this.handleMouseout = this.handleMouseout.bind(this);
         this.dataByName = dataByName;
         this.nameById = nameById;
         this.createMap();
@@ -44,63 +44,104 @@ class WorldMap {
                     .attr("centroid", d => d3.geoCentroid(d))
                     .attr("d", d => pathGenerator(d)) // Function takes one feature as argument
                     .attr("opacity", "90%")
-                    .attr("cursor", "pointer")
-                    .attr("class", "country")
                     .attr("id", d => `${d.id}`)
+                    // Add cursor "pointer" to participating countries:
+                    .attr("cursor", d => (
+                        this.dataByName[this.nameById[parseInt(d.id)]] ?
+                            "pointer" : null
+                    ))
+                    // Add class "country" to participating countries:
+                    .attr("class", d => {
+                        const countryName = this.nameById[parseInt(d.id)];
+                        return this.dataByName[countryName] ?
+                            `country ${countryName}` : null
+                    })
                     .attr("fill", d => {
+                        // If the country is represented in dataByName object 
+                        // and therefore participated in the study:
                         const countryName = this.nameById[parseInt(d.id)];
                         if (this.dataByName[countryName]) {
                             const ladderScore = parseFloat(this.dataByName[countryName]["Ladder score"]);
                             return colorScale(ladderScore);
                         }
-                        else { // Country was not included in the study
+                        // Country did not participate in the study:
+                        else {
                             return "#cccccc";
                         }
                     })
-                    .append("title")
-                    .text(d => {
-                        const countryName = this.nameById[parseInt(d.id)];
-                        return countryName;
-                    });
+                    // .append(d => {
+                        // const countryName = this.nameById[parseInt(d.id)];
+                        // const tooltip = document.createElement("div");
+                        // tooltip.classList.add("tooltip");
+                        // debugger
+                        // if (this.dataByName[countryName]) {
+                        //     const dataHash = this.dataByName[countryName];
+                        //     const table = Tooltip(countryName, dataHash);
+                        //     tooltip.insertAdjacentHTML("afterbegin", table);
+                        // }
+                        // return tooltip;
+                    // })
+                
+                document.querySelectorAll("path.country").forEach(path => {
+                    const box = path.getClientRects()[0];
+
+                    const countryName = this.nameById[parseInt(path.id)];
+                    const tooltip = document.createElement("div");
+                    tooltip.classList.add(`${countryName.split(" ").join("-")}`, "tooltip");
+
+                    const dataHash = this.dataByName[countryName];
+                    const table = Tooltip(countryName, dataHash);
+
+                    tooltip.insertAdjacentHTML("afterbegin", table);
+                    // tooltip.style.left = `${box.x - box.width / 2}px`;
+                    // tooltip.style.top = `${box.y + box.height / 2}px`;
+                    const body = document.querySelector("body");
+                    body.append(tooltip);
+                })
+                    // .append("title")
+                    // .text(d => this.nameById[parseInt(d.id)]);
 
                 document.querySelectorAll(".country").forEach(country => {
-                    country.addEventListener("mouseenter", this.handleMouseenterOver);
-                    country.addEventListener("mouseout", this.handleMouseOut);
+                    country.addEventListener("mouseenter", this.handleMouseenter);
+                    country.addEventListener("mouseout", this.handleMouseout);
                 });
             });
 
         // Add zoom functionality:
         const zoom = d3.zoom()
-            .on("zoom", (event, d) => {
-                g.attr("transform", event.transform);
-            });
+            .on("zoom", (event, d) => g.attr("transform", event.transform));
         zoom(svg);
     }
 
-    handleMouseenterOver(event) {
-        const target = event.target;
-        target.setAttribute("style", "opacity: 100%;");
-        target.setAttribute("style", "stroke-width: 1.4px");
+    handleMouseenter(event) {
+        const currentTarget = event.currentTarget;
+        currentTarget.setAttribute("style", "opacity: 100%;");
+        currentTarget.setAttribute("style", "stroke-width: 1.4px");
 
         // Instantiate Tooltip:
-        const countryName = this.nameById[parseInt(target.id)];
-        const dataHash = this.dataByName[countryName];
-        new Tooltip(countryName, dataHash);
-
-        const tooltip = document.querySelector(".tooltip");
+        const countryName = this.nameById[parseInt(currentTarget.id)];
+        // const dataHash = this.dataByName[countryName];
+        // new Tooltip(countryName, dataHash);
+        // debugger
+        const tooltip = document.querySelector(`.${countryName.split(" ").join("-")}.tooltip`);
+        // debugger
         const xCoord = event.pageX;
         const yCoord = event.pageY;
-        tooltip.style.left = `${xCoord - 30}px`;
-        tooltip.style.top = `${yCoord - 40}px`;
-        tooltip.style.visibility = "visible";
+        debugger
+        tooltip.style.left = `${xCoord}px`;
+        tooltip.style.top = `${yCoord}px`;
+        tooltip.classList.add("show");
+        // tooltip.style.visibility = "visible";
     }
 
-    handleMouseOut(event) {
-        const target = event.target;
-        target.setAttribute("style", "fill: #cccccc;");
-        target.setAttribute("style", "opacity: 90%;");
-        const tooltip = document.querySelector(".tooltip");
-        tooltip.style.visibility = "hidden";
+    handleMouseout(event) {
+        const currentTarget = event.currentTarget;
+        // currentTarget.setAttribute("style", "fill: #cccccc;");
+        currentTarget.setAttribute("style", "opacity: 90%;");
+        const countryName = this.nameById[parseInt(currentTarget.id)];
+        const tooltip = document.querySelector(`.${countryName.split(" ").join("-")}.tooltip`);
+        tooltip.classList.remove("show");
+        // tooltip.style.visibility = "hidden";
     }
 }
 
