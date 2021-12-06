@@ -1,7 +1,13 @@
-### Background:
-Global Happiness is a data visualization that uses the results of the World Happiness Report 2021. Specifically, it looks at the Ladder Score, which is a numerical value between 1 and 10 representing the level to which people report to feeling happy with their lives.
+# Global Happiness
 
-Global Happiness uses a color scale to represent the varying degrees of happiness across the world, with darker colors indicating lower levels of happiness and lighter colors indicating higher levels of happiness.
+[Global Happiness Live!](https://rebeccamrfoster.github.io/GlobalHappiness/#)
+
+## Overview
+
+Global Happiness is a data visualization of the World Happiness Report 2021. The world map is colored according to each country's Ladder Score, which is a numerical value between 1 and 10 representing the degree to which people feel happy with their lives. Darker colors indicate lower levels of happiness, and lighter colors indicate higher levels of happiness. All data was sourced from Kaggle.
+
+<img src="https://user-images.githubusercontent.com/88195745/144770668-1ad09828-8047-4433-8e6e-dc78731db0c6.gif"
+  align="center" height="350px" width="auto" />
 
 ### Functionality & MVPs:
 In Global Happiness, users will be able to:
@@ -9,6 +15,40 @@ In Global Happiness, users will be able to:
 - Zoom in an out to view the map more clearly.
 - Use the color legend to understand what the color of a country signifies.
 - Click on the link to the World Happiness Report to learn more about the study.
+
+Using JavaScript's `async`/`await` pattern, I fetched the World Happiness Report data
+```javascript
+async function fetchData() {
+    let data;
+    data = await d3.csv("https://github.com/rebeccamrfoster/GlobalHappinessDataset/blob/main/world-happiness-report-2021.csv");
+    const dataByName = parseDataByName(data);
+
+    data = await d3.tsv("https://raw.githubusercontent.com/KoGor/Map-Icons-Generator/master/data/world-110m-country-names.tsv");
+    const nameById = parseNameById(data);
+
+    createModal();
+    createFooter();
+    new WorldMap(dataByName, nameById);
+}
+
+fetchData();
+```
+
+```javascript
+d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
+    .then(response => {
+        // Convert TopoJSON to GeoJSON (e.g., topojson.feature(topology, object)):
+        const countries = topojson.feature(response, response.objects.countries);
+
+        // Define one SVG path element for each country:                
+        g.selectAll("path")
+            .data(countries.features, (d, i) =>  d + i )
+            .enter()
+            .append("path")
+            .attr("centroid", d => d3.geoCentroid(d))
+            .attr("d", d => pathGenerator(d))
+}
+```
 
 In addition, Global Happiness will include:
 - A description about what the data signifies and how to interact with the visualization.
