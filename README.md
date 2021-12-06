@@ -39,7 +39,7 @@ async function fetchData() {
 fetchData();
 ```
 
-Each country is represented by a unique `path` element created from the topographic information provided by D3. The fill color each `path` element is manipulated according to the country's Ladder Scores. Countries without color did not participate in the study.
+Each country is represented by a unique `path` element created from the topographic information provided by D3. The fill color each `path` element is manipulated according to the country's Ladder Score. Countries without color did not participate in the study.
 
 ```javascript
 d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
