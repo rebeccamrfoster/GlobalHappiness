@@ -63,6 +63,10 @@ Hovering over a particular country reveals a Tooltip displaying the other factor
 ### Modal
 When the user clicks on the "About" section in the navigation bar, a modal containing information about how to interact with the site and what the data represents appears on the screen. The modal container acts as an overlay, drawing focus to the modal in the center of the screen and increasing readability. Event listeners were added to the "About" button and "X" button on the modal to toggle the modal's `opacity` and `pointer-events` properties. I also incorporated the CSS3 Flexbox model to produce a clean and responsive web page.
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/88195745/144864762-4daaef91-97d6-4f1b-b415-f4f6b1a86496.png" width="400" alt="modal" >
+</p>
+
 ```scss
 .modal-container {
   position: fixed;
