@@ -6,8 +6,10 @@
 
 Global Happiness is a data visualization of the World Happiness Report 2021. The world map is colored according to each country's Ladder Score, which is a numerical value between 1 and 10 representing the degree to which people feel happy with their lives. Darker colors indicate lower levels of happiness, and lighter colors indicate higher levels of happiness. All data was sourced from Kaggle.
 
-<img src="https://user-images.githubusercontent.com/88195745/144770668-1ad09828-8047-4433-8e6e-dc78731db0c6.gif"
-  align="middle" height="350px" width="auto" />
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/88195745/144770668-1ad09828-8047-4433-8e6e-dc78731db0c6.gif" height="350px" width="auto" />
+</p>
+
 
 ### Functionality & MVPs:
 In Global Happiness, users will be able to:
