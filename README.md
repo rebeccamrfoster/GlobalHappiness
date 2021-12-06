@@ -58,7 +58,7 @@ d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
 ```
 
 ### Tooltip
-Hovering over a particular country reveals a Tooltip displaying the other factors that were tested in the study and that may contribute to its Ladder Score. The Tooltip feature was constructed using Vanilla JavaScript to manipulate the DOM and event listeners to detect when the country was being hoverd over. The `show` class is added to the Tooltip element upon `mouseenter` and removed upon `mouseout`, toggling both the `display` and `opacity` properties of the element and its descendants.
+Hovering over a particular country reveals a Tooltip displaying the other factors that were tested in the study and that may contribute to the Ladder Score. The Tooltip feature was constructed using Vanilla JavaScript to manipulate the DOM and event listeners to detect when the country was being hovered over. The `show` class is added to the Tooltip element upon `mouseenter` and removed upon `mouseout`, toggling both the `display` and `opacity` properties of the element and its descendants.
 
 ### Modal
 When the user clicks on the "About" section in the navigation bar, a modal containing information about how to interact with the site and what the data represents appears on the screen. The modal container acts as an overlay, drawing focus to the modal in the center of the screen and increasing readability. Event listeners were added to the "About" button and "X" button on the modal to toggle the modal's `opacity` and `pointer-events` properties. I also incorporated the CSS3 Flexbox model to produce a clean and responsive web page.
