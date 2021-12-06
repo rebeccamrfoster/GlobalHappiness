@@ -17,21 +17,11 @@ Global Happiness is a data visualization of the World Happiness Report 2021. The
 - D3.js
 - Kaggle (to source data)
 
-## Features & Technical Challenges
+## Core Features
 
-Utilized the D3 JavaScript library to build a realistic, zoomable world map and manipulate the color fill of each country based on data from the World Happiness Report.
+### World Map
+I built a realistic, zoomable world map with the help of the D3 JavaScript library. Utilizing JavaScript's `async`/`await` pattern, I fetched data from the World Happiness Report 2021 before instantiating the `WorldMap` class, passing the fetched data into its constructor function.
 
-Built a Tooltip feature using mouse event listeners to toggle the visibility and inner HTML of the Tooltip element, allowing users to hover over each country to view its specific associated statistics.
-
-Incorporated the CSS3 Flexbox model and media queries to produce a clean and responsive web page.
-
-In Global Happiness, users will be able to:
-- Hover over a country to reveal the specific Ladder Score pertaining to the country as well as other factors that contribute to its score.
-- Zoom in an out to view the map more clearly.
-- Use the color legend to understand what the color of a country signifies.
-- Click on the link to the World Happiness Report to learn more about the study.
-
-Using JavaScript's `async`/`await` pattern, I fetched the World Happiness Report data
 ```javascript
 async function fetchData() {
     let data;
@@ -49,6 +39,8 @@ async function fetchData() {
 fetchData();
 ```
 
+Each country is represented by a unique `path` element created from the topographic information provided by D3. The fill color each `path` element is manipulated according to the country's Ladder Scores. Countries without color did not participate in the study.
+
 ```javascript
 d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
     .then(response => {
@@ -65,8 +57,32 @@ d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json")
 }
 ```
 
-In addition, Global Happiness will include:
-- A description about what the data signifies and how to interact with the visualization.
-- A footer at the bottom of the page with the year and my name.
-- A favicon.
-- A README file that explains the functionality and purpose of the project, including a Table of Contents, screenshots, and code snippets.
+### Tooltip
+Hovering over a particulate country reveals a Tooltip displaying the other factors that were tested in the study and that may contribute to its Ladder Score. The Tooltip feature was constructed using Vanilla JavaScript to manipulate the DOM and event listeners to detect when the country was being hoverd over. The `show` class is added to the Tooltip element upon `mouseenter` and removed upon `mouseout`, toggling both the `display` and `opacity` properties of the element and its descendants.
+
+### Modal
+When the user clicks on the "About" section in the navigation bar, a modal containing information about how to interact with the site and what the data represents appears on the screen. The modal container acts as an overlay, drawing focus to the modal in the center of the screen and increasing readability. Event listeners were added to the "About" button and "X" button on the modal to toggle the modal's `opacity` and `pointer-events` properties. I also incorporated the CSS3 Flexbox model to produce a clean and responsive web page.
+
+```javascript
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+
+  &.show {
+      opacity: 1;
+      pointer-events: auto;
+  }
+}
+```
