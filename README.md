@@ -4,14 +4,27 @@
 
 ## Overview
 
-Global Happiness is a data visualization of the World Happiness Report 2021. The world map is colored according to each country's Ladder Score, which is a numerical value between 1 and 10 representing the degree to which people feel happy with their lives. Darker colors indicate lower levels of happiness, and lighter colors indicate higher levels of happiness. All data was sourced from Kaggle.
+Global Happiness is a data visualization of the World Happiness Report 2021. The world map is colored according to each country's Ladder Score, which is a numerical value between 1 and 10 representing the degree to which people feel happy with their lives. Darker colors indicate lower levels of happiness, and lighter colors indicate higher levels of happiness.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/88195745/144770668-1ad09828-8047-4433-8e6e-dc78731db0c6.gif" height="350px" width="auto" />
 </p>
 
+## Technologies
+- Vanilla JavaScript
+- SCSS
+- HTML5
+- D3.js
+- Kaggle (to source data)
 
-### Functionality & MVPs:
+## Features & Technical Challenges
+
+Utilized the D3 JavaScript library to build a realistic, zoomable world map and manipulate the color fill of each country based on data from the World Happiness Report.
+
+Built a Tooltip feature using mouse event listeners to toggle the visibility and inner HTML of the Tooltip element, allowing users to hover over each country to view its specific associated statistics.
+
+Incorporated the CSS3 Flexbox model and media queries to produce a clean and responsive web page.
+
 In Global Happiness, users will be able to:
 - Hover over a country to reveal the specific Ladder Score pertaining to the country as well as other factors that contribute to its score.
 - Zoom in an out to view the map more clearly.
@@ -57,12 +70,6 @@ In addition, Global Happiness will include:
 - A footer at the bottom of the page with the year and my name.
 - A favicon.
 - A README file that explains the functionality and purpose of the project, including a Table of Contents, screenshots, and code snippets.
-
-### Technologies, Libraries, & APIs:
-- npm to manage packages in the JavaScript environment.
-- Webpack to bundle JavaScript modules.
-- D3 library to represent the data using a world map.
-- Kaggle to source data from the World Happiness Report 2021.
 
 ### Implementation Timeline:
 - FRIDAY AFTERNOON & WEEKEND: Create the project skeleton and basic HTML and CSS to render in the browser. Read about and experiment with the D3 interface. Create a map using TopoJSON, and load the dataset into the project. Connect the dataset with the map, so that each HTML element representing a country is somehow linked to the respective row in the CSV file.
