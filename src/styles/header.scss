@@ -3,42 +3,45 @@
 
     .header-nav {
         width: 100%;
-        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .header-nav-list-title {
+            font-size: 24px;
+            font-weight: 400;
+            margin-left: 5%;
+        }
     }
 
-    .group:after {
-        content: "";
-        display: block;
-        clear: both;
-    }   
+    // .group:after {
+    //     content: "";
+    //     display: block;
+    //     clear: both;
+    // }   
 }
 
 .header-nav-list {
-    margin-right: 60px;
-    margin-left: 60px;
-
-    .header-nav-list-item, .header-nav-list-title {
-        display: block;
-        padding: 20px;
-    }
-    
-    .header-nav-list-title {
-        position: relative;
-        float: left;
-        font-size: 24px;
-    }
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-right: 5%;
 
     .header-nav-list-item {
-        float: right;
-        padding: 24px;
         font-size: 17px;
 
         a {
-            padding: 24px;
+            padding: 20px 0;
         }
     }
 
     .header-nav-list-item a:hover {
         color: rgb(189, 189, 189);
+    }
+}
+
+@media all and (max-width: 550px) {
+    .header .header-nav .header-nav-list-title {
+        font-size: 18px;
     }
 }
