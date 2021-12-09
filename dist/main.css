@@ -40,7 +40,7 @@ main {
   align-items: center;
   margin-top: 40px;
   width: 900px;
-  height: 500px;
+  padding-bottom: 15vh;
 }
 .map-and-legend .sphere {
   fill: transparent;
@@ -121,7 +121,6 @@ main {
   }
 }
 .footer {
-  position: fixed;
   bottom: 0;
   width: 100vw;
   text-align: center;
